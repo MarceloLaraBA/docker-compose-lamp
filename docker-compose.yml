@@ -14,7 +14,7 @@ services:
       - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
       - ${LOG_DIR-./logs/apache2}:/var/log/apache2
     environment:
-      VIRTUAL_HOST: server2
+      VIRTUAL_HOST: server2, darkwp.ossiris.net
   mysql:
     build: ./bin/mysql
     container_name: 'legacy-mysql'
@@ -42,3 +42,7 @@ services:
     image: redis:latest
     ports:
       - "6379:6379"
+networks:
+  default:
+    external:
+      name: dockerwp
